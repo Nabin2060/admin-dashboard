@@ -1,15 +1,14 @@
-
 import { useState } from "react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+} from "@/app/components/ui/dialog";
+import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
+import { Label } from "@/app/components/ui/label";
+import { Textarea } from "@/app/components/ui/textarea";
 
 interface Product {
   id: string;
@@ -65,9 +64,7 @@ export function ProductDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>
-            {product ? "Edit Product" : "Add Product"}
-          </DialogTitle>
+          <DialogTitle>{product ? "Edit Product" : "Add Product"}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
@@ -138,9 +135,7 @@ export function ProductDialog({
             >
               Cancel
             </Button>
-            <Button type="submit">
-              {product ? "Update" : "Create"}
-            </Button>
+            <Button type="submit">{product ? "Update" : "Create"}</Button>
           </div>
         </form>
       </DialogContent>

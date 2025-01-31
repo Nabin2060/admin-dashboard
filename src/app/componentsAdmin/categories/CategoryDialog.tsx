@@ -4,10 +4,10 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@/app/components/ui/dialog";
+import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
+import { Label } from "@/app/components/ui/label";
 
 interface Category {
   id: string;
@@ -73,9 +73,7 @@ export function CategoryDialog({
             >
               Cancel
             </Button>
-            <Button type="submit">
-              {category ? "Update" : "Create"}
-            </Button>
+            <Button type="submit">{category ? "Update" : "Create"}</Button>
           </div>
         </form>
       </DialogContent>

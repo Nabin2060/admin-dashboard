@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import { Plus, Pencil, Trash } from "lucide-react";
 import {
   Table,
@@ -10,9 +10,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { useToast } from "@/components/ui/use-toast";
-import { ProductDialog } from "@/app/components/products/ProductDialog";
+} from "@/app/components/ui/table";
+import { useToast } from "@/app/components/ui/use-toast";
+import { ProductDialog } from "@/app/componentsAdmin/products/ProductDialog";
 
 interface Product {
   id: string;
@@ -20,7 +20,7 @@ interface Product {
   description: string;
   image: string;
   categoryId: string;
-  price:number;
+  price: number;
   initialStock: number;
   availableStock: number;
 }
@@ -44,9 +44,7 @@ export default function Products() {
   };
 
   const handleEditProduct = (product: Product) => {
-    setProducts(
-      products.map((p) => (p.id === product.id ? product : p))
-    );
+    setProducts(products.map((p) => (p.id === product.id ? product : p)));
     toast({
       title: "Product updated",
       description: "The product has been updated successfully...",
@@ -65,10 +63,12 @@ export default function Products() {
     <div className="m-6">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-bold ">Products</h1>
-        <Button onClick={() => {
-          setSelectedProduct(null);
-          setIsDialogOpen(true);
-        }}>
+        <Button
+          onClick={() => {
+            setSelectedProduct(null);
+            setIsDialogOpen(true);
+          }}
+        >
           <Plus className="mr-2 h-4 w-4" /> Add Product
         </Button>
       </div>

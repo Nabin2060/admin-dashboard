@@ -1,6 +1,6 @@
-"use client"
+"use client";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import { Plus, Pencil, Trash } from "lucide-react";
 import {
   Table,
@@ -9,9 +9,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { useToast } from "@/components/ui/use-toast";
-import { CategoryDialog } from "@/app/components/categories/CategoryDialog";
+} from "@/app/components/ui/table";
+import { useToast } from "@/app/components/ui/use-toast";
+import { CategoryDialog } from "@/app/componentsAdmin/categories/CategoryDialog";
 
 interface Category {
   id: string;
@@ -22,30 +22,49 @@ interface Category {
 export default function Categories() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null
+  );
   const { toast } = useToast();
 
   const handleAddCategory = (category: Omit<Category, "id">) => {
-    const newCategory = { ...category, id: Math.random().toString(36).substring(7) };
+    const newCategory = {
+      ...category,
+      id: Math.random().toString(36).substring(7),
+    };
     setCategories([...categories, newCategory]);
-    toast({ title: "Category created", description: "The category has been created successfully." });
+    toast({
+      title: "Category created",
+      description: "The category has been created successfully.",
+    });
   };
 
   const handleEditCategory = (category: Category) => {
     setCategories(categories.map((c) => (c.id === category.id ? category : c)));
-    toast({ title: "Category updated", description: "The category has been updated successfully." });
+    toast({
+      title: "Category updated",
+      description: "The category has been updated successfully.",
+    });
   };
 
   const handleDeleteCategory = (id: string) => {
     setCategories(categories.filter((c) => c.id !== id));
-    toast({ title: "Category deleted", description: "The category has been deleted successfully." });
+    toast({
+      title: "Category deleted",
+      description: "The category has been deleted successfully.",
+    });
   };
 
   return (
     <div className="m-7">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-bold">Categories</h1>
-        <Button onClick={() => { setSelectedCategory(null); setIsDialogOpen(true); }}>
+        <Button
+          onClick={() => {
+            setSelectedCategory(null);
+            setIsDialogOpen(true);
+          }}
+        >
           <Plus className="mr-2 h-4 w-4" /> Add Category
         </Button>
       </div>
@@ -59,7 +78,7 @@ export default function Categories() {
           <Table>
             <TableHeader>
               <TableRow>
-              <TableHead>Id</TableHead>
+                <TableHead>Id</TableHead>
                 <TableHead>Image</TableHead>
                 <TableHead>Name</TableHead>
                 <TableHead className="w-[100px]">Actions</TableHead>
@@ -69,15 +88,30 @@ export default function Categories() {
               {categories.map((category) => (
                 <TableRow key={category.id}>
                   <TableCell>
-                    <img src={category.image} alt={category.name} className="h-10 w-10 rounded-full object-cover" />
+                    <img
+                      src={category.image}
+                      alt={category.name}
+                      className="h-10 w-10 rounded-full object-cover"
+                    />
                   </TableCell>
                   <TableCell>{category.name}</TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      <Button variant="ghost" size="icon" onClick={() => { setSelectedCategory(category); setIsDialogOpen(true); }}>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => {
+                          setSelectedCategory(category);
+                          setIsDialogOpen(true);
+                        }}
+                      >
                         <Pencil className="h-4 w-4" />
                       </Button>
-                      <Button variant="ghost" size="icon" onClick={() => handleDeleteCategory(category.id)}>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => handleDeleteCategory(category.id)}
+                      >
                         <Trash className="h-4 w-4" />
                       </Button>
                     </div>
@@ -103,6 +137,5 @@ export default function Categories() {
         }}
       />
     </div>
-
   );
 }
