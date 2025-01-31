@@ -1,5 +1,5 @@
-import Categories from "./categories/page";
-import Products from "./products/page";
+import Categories from "./app/categories/page";
+import Products from "./app/products/page";
 
 
 export default function Home() {
